@@ -1,7 +1,7 @@
 import axios from "axios";
 import "./default.css";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   isLoginState,
   loginIdState,
@@ -43,7 +43,7 @@ const MainNavi = () => {
 const HeaderLink = () => {
   const [loginId, setLoginId] = useRecoilState(loginIdState);
   const [memberType, setMemberType] = useRecoilState(memberTypeState);
-  const isLogin = useRecoilState(isLoginState);
+  const isLogin = useRecoilValue(isLoginState);
 
   const logout = () => {
     setLoginId("");

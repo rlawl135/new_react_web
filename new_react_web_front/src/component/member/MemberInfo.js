@@ -6,9 +6,9 @@ import { loginIdState, memberTypeState } from "../utils/RecoilData";
 import { useNavigate } from "react-router-dom";
 
 const MemberInfo = () => {
-  const backServer = process.env.NEW_REACT_APP_BACK_SERVER;
+  const backServer = process.env.REACT_APP_BACK_SERVER;
   const navigate = useNavigate();
-  const [member, setMember] = useState(null);
+  const [member, setMember] = useState();
   const [loginId, setLoginId] = useRecoilState(loginIdState);
   const [memberType, setMemberType] = useRecoilState(memberTypeState);
   useEffect(() => {

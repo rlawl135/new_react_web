@@ -5,7 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ChangePw = () => {
-  const backServer = process.env.NEW_REACT_APP_BACK_SERVER;
+  const backServer = process.env.REACT_APP_BACK_SERVER;
   const [loginId, setLoginId] = useRecoilState(loginIdState);
   const [member, setMember] = useState({ memberId: loginId, memberPw: "" });
   useEffect(() => {

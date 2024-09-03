@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const Join = () => {
-  const backServer = process.env.NEW_REACT_APP_BACK_SERVER;
+  const backServer = process.env.REACT_APP_BACK_SERVER;
   const navigate = useNavigate();
   const [member, setMember] = useState({
     memberId: "",
@@ -12,15 +12,9 @@ const Join = () => {
     memberName: "",
     memberPhone: "",
   });
-  //아이디 중복체크결고과에 따라서 바뀔state
-  //0: 아직 입력하지 않은 상태, 1: 정규포현식,중복체크 모두 통과한 경우
-  //2:정규표현식을 만족하지 못한 상태, 3:아이디가 중복인 경우
   const [idCheck, setIdCheck] = useState(0);
 
   const checkId = () => {
-    //아이디 유효성검사
-    //1.정규표현식 검사
-    //2.정규표현식 검사 성공하면,DB에 중복체크
     const idReg = /^[a-zA-Z0-9]{4,8}$/;
     if (!idReg.test(member.memberId)) {
       setIdCheck(2);
@@ -48,10 +42,6 @@ const Join = () => {
   const changeMemberPwRe = (e) => {
     setMemberPwRe(e.target.value);
   };
-  //비밀번호/ 비밀번호 확인 이 같은 체크에서 메세지 출력
-  //react에서는 요소를 선택할 때 document.querySelect()방식을 권고하지 않음
-  //useRef 훅을 이용해서 요소와 연결해서 사용(연결하고 싶은 태그의 ref속성에 해당 객체를 적용)
-  //연결이 되면 해당 객체의 current속성이 dom객체를 의미
   const pwMessage = useRef(null);
   const checkPw = () => {
     pwMessage.current.classList.remove("valid");
@@ -79,7 +69,6 @@ const Join = () => {
       Swal.fire({
         text: "입력 값을 확인하세요.",
         icon: "info",
-        confirmButtonColor: "var(--main3)",
       });
     }
   };

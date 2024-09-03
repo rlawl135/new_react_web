@@ -5,7 +5,7 @@ import Main from "./component/common/Main";
 import Join from "./component/member/Join";
 import Login from "./component/member/Login";
 import MemberMain from "./component/member/MemberMain";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { loginIdState, memberTypeState } from "./component/utils/RecoilData";
@@ -17,11 +17,10 @@ function App() {
 
   useEffect(() => {
     refreshLogin();
-    window.setInterval(refreshLogin, 60 * 60 * 1000); //한시간이 지나면 자동으로 refresh
+    window.setInterval(refreshLogin, 60 * 60 * 1000);
   }, []);
 
   const refreshLogin = () => {
-    //최초화면에 접속하면 localStorage에 저장한 refreshToken을 가져와서 자동으로 로그인 처리
     const refreshToken = window.localStorage.getItem("refreshToken");
     if (refreshToken != null) {
       axios.defaults.headers.common["Authorization"] = refreshToken;

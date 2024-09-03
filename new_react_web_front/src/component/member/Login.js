@@ -9,9 +9,9 @@ const Login = () => {
   //recoil저장소에 접근하는 방법
   const [loginId, setLoginId] = useRecoilState(loginIdState);
   const [memberType, setMemberType] = useRecoilState(memberTypeState);
-  //console.log(loginId);
-  //console.log(memberType);
-  const backServer = process.env.NEW_REACT_APP_BACK_SERVER;
+  console.log(loginId);
+  console.log(memberType);
+  const backServer = process.env.REACT_APP_BACK_SERVER;
   const navigate = useNavigate();
   const [member, setMember] = useState({ memberId: "", memberPw: "" });
   const changeMember = (e) => {
@@ -32,9 +32,7 @@ const Login = () => {
         console.log(res);
         setLoginId(res.data.memberId);
         setMemberType(res.data.memberType);
-        //로그인 이후에 axios요청 시 발급받은 토큰 값을 자동으로 axios에 추가하는 설정
         axios.defaults.headers.common["Authorization"] = res.data.accessToken;
-        //로그인 상태를 지속적으로 유지시키기 위해 발급받은 refreshToken을 브라우저에 저장
         window.localStorage.setItem("refreshToken", res.data.refreshToken);
         navigate("/");
       })

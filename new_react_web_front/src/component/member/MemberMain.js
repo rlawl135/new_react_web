@@ -8,7 +8,7 @@ import ChangePw from "./ChangePw";
 import Swal from "sweetalert2";
 
 const MemberMain = () => {
-  const [member, setMember] = useState();
+  const [member, setMember] = useState([]);
   const navigate = useNavigate();
   const [memberType, setMemberType] = useRecoilState(memberTypeState);
   const isLogin = useRecoilValue(isLoginState);
